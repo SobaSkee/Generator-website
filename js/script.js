@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var buttonClicks = 0;
     var button = document.getElementById("clickButton");
     
-    button.addEventListener("click", function() {
+    button.addEventListener("click", handleClick);
+    function handleClick() {
         buttonClicks++;
         var oldText = document.getElementById("hiddenMessage");
         console.log("Button clicked " + buttonClicks + " times.");
@@ -19,9 +20,10 @@ document.addEventListener("DOMContentLoaded", function() {
             oldText.textContent += "O";
         }
         if (buttonClicks === 100) {
+            button.removeEventListener("click", handleClick);
             oldText.textContent = "ONO the end."
         }
-    });
+    };
 
 
 });
