@@ -1,0 +1,66 @@
+omo website
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>omo</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <button id="clickButton" onclick="revealMessage()">OMO</button>
+    <p id="hiddenMessage" style="display:none">Heee there.</p>
+
+</body>
+</html>
+
+script.js
+document.addEventListener("DOMContentLoaded", function() {
+    var buttonClicks = 0;
+    var button = document.getElementById("clickButton");
+    var body = document.body;
+    var saturation = 100;
+    
+    button.addEventListener("click", handleClick);
+    function handleClick() {
+        buttonClicks++;
+        var oldText = document.getElementById("hiddenMessage");
+        console.log("Button clicked " + buttonClicks + " times.");
+        if (buttonClicks === 3) {
+            body.style.backgroundColor = "#FF9966";
+            oldText.textContent = ".";
+        }
+        if (buttonClicks === 5) {
+            body.style.backgroundColor = "#FF6666";
+            oldText.textContent = "Ouch.";
+
+        }
+        if (buttonClicks === 7) {
+            body.style.backgroundColor = "#A52A2A";
+            oldText.textContent = "GRRRR.";
+        }
+        if (buttonClicks === 10) {
+            oldText.textContent = "OMO";
+        }
+        if (buttonClicks > 10) {
+            oldText.textContent += "O";
+            saturation += 10;
+            body.style.backgroundColor = "hsl(0, " + saturation + "%, 50%)";
+        }
+        if (buttonClicks === 100) {
+            button.removeEventListener("click", handleClick);
+            oldText.textContent = "ONO the end.";
+
+        }
+    };
+
+
+});
+function revealMessage() {
+    document.getElementById("hiddenMessage").style.display = "block";
+}
+
+style.css
+body {
+    background-color: #f0f0f0;
+}
